@@ -1,16 +1,18 @@
-# chuck_norris_tinder
+# Chuck Norris Tinder
 
-A new Flutter project.
+A flutter application of a Tinder-like interface to browse Chuck Norris jokes.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This flutter application contains Tinder-like swiping cards containing Chuck Norris jokes taken from public [Chuck Norris jokes API](https://api.chucknorris.io).
+Swiping a card reveals another joke.
+A joke can be viewed from browser by clicking `Open in Browser` button at the bottom of each card.
 
-A few resources to get you started if this is your first Flutter project:
+## Download
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+[Download APK](https://github.com/markovav-official/ChuckNorrisTinder/releases/tag/v1.0.0)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+| Default view                                                             | Card swipe                                                           |
+|--------------------------------------------------------------------------|----------------------------------------------------------------------|
+| ![Default view](./README_images/Screenshot1.png?raw=true "Default view") | ![Card swipe](./README_images/Screenshot2.png?raw=true "Card swipe") |
