@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "39251406215",
+    "project_id": "chucknorristinder-ca2b3",
+    "storage_bucket": "chucknorristinder-ca2b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39251406215:android:7c052a572e6806d1e37722",
+        "android_client_info": {
+          "package_name": "ru.markovav.chuck_norris_tinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39251406215-ah3osracvv69l0gj46hee7ac8na65bdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIdMSoy8a6-bQoNpGhh9j2AHWKMFjeTp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39251406215-ah3osracvv69l0gj46hee7ac8na65bdn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "39251406215-p1ldobjl2usefu771350gckugcptjnll.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ru.markovav.chuckNorrisTinder"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
