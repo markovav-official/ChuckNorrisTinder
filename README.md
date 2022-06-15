@@ -18,7 +18,7 @@ Swiping a card reveals another joke.
 
 ## Download
 
-[Download APK](https://github.com/markovav-official/ChuckNorrisTinder/releases/tag/v1.0.0)
+[Download APK](https://github.com/markovav-official/ChuckNorrisTinder/releases/tag/v2.0.0)
 
 ## Screenshots
 
