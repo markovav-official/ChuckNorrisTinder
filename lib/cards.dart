@@ -1,8 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chuck_norris_tinder/card.dart';
 import 'package:chuck_norris_tinder/chuck_norris_api/dio_fetcher.dart';
+import 'package:chuck_norris_tinder/test.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+import 'loading.dart';
 
 class Cards extends StatefulWidget {
   const Cards({Key? key}) : super(key: key);
@@ -14,12 +16,10 @@ class Cards extends StatefulWidget {
 class CardsState extends State<Cards> {
   static int _colorIndex = 0;
   List<Widget> cardList = [];
-  Future<List<Widget>>? initFuture;
+  Set<String> categories = {"All jokes"};
+  String selectedCategory = "All jokes";
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  Future<List<Widget>>? initFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +28,28 @@ class CardsState extends State<Cards> {
       child: FutureBuilder<List<Widget>>(
         future: initFuture,
         builder: (context, snapshot) {
-          return Stack(
-            alignment: Alignment.center,
-            children: snapshot.hasData
-                ? snapshot.data!
-                : [
-                    const AutoSizeText(
-                      "Loading...",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20),
-                      maxLines: 12,
-                    )
-                  ],
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: snapshot.hasData && snapshot.data!.isNotEmpty
+                    ? snapshot.data!
+                    : [const Loading()],
+              ),
+              DropdownMenu(this, categories),
+            ],
           );
         },
       ),
     );
+  }
+
+  void refreshAll() {
+    setState(() {
+      cardList.clear();
+      initFuture = _init();
+    });
   }
 
   void _removeCard() {
@@ -54,11 +60,12 @@ class CardsState extends State<Cards> {
 
   Future<List<Widget>> _init() async {
     await _fillCards();
+    categories.addAll(await DioFetcher.getCategories());
     return cardList;
   }
 
   Future _fillCards() async {
-    for (int i = cardList.length; i < 5; i++) {
+    for (int i = 0; i < 5; i++) {
       await _addCard();
     }
   }
@@ -67,7 +74,8 @@ class CardsState extends State<Cards> {
     Color color = Colors.primaries[_colorIndex++ % Colors.primaries.length];
     CardWidget card;
     try {
-      card = CardWidget(color, await DioFetcher().getRandomJoke());
+      card =
+          CardWidget(color, await DioFetcher.getRandomJoke(selectedCategory));
     } on DioError {
       if (!Navigator.of(context).canPop()) {
         _noConnectionDialog();
@@ -89,17 +97,12 @@ class CardsState extends State<Cards> {
   Future<void> _noConnectionDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('No connection'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text("You don't have an internet connection!"),
-                Text(''),
-              ],
-            ),
+          content: const SingleChildScrollView(
+            child: Text("You don't have an internet connection!"),
           ),
           actions: <Widget>[
             TextButton(
