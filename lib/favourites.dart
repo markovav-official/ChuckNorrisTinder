@@ -35,7 +35,6 @@ class FavouritesState extends State<Favourites> {
                 FavouritesEntry(this, ChuckNorrisJoke.fromJson(e.data())))
             .toList();
         return ListView(
-          padding: const EdgeInsets.all(3),
           children: list,
         );
       },
